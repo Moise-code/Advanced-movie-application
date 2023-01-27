@@ -35,7 +35,56 @@ if(movieTitle === '' ||
 
   }
   Movies.push(newMovie);
-  console.log(newMovie);
+  renderMovies();
 }
 
+// function to render the movies and displays it to the dom
+
+// const renderMovies = () =>{
+
+//   // lets target the ul to append li in the end
+
+//  const movieList = document.querySelector('#movie-list');
+//  if(Movies.length === 0){
+//    movieList.classList.remove('visible')
+//   } else{
+//     movieList.classList.add('visible');
+//   }
+//   movieList.innerHTML = '';
+//   // now lets out put the movies by using foreach
+
+//   Movies.forEach((movie) =>{
+//     // then we create new document in the movie list 
+//     const movieElement = document.createElement('li');
+//     // to take element to add
+//     movieElement.textContent = movie.info.title;
+//     movieList.append(movieElement)
+//   });
+
+// }
+
+// function to renders movies on the UI
+
+const renderMovies = () =>{
+  // we are going first to target the ul holder of movies
+  const MovieList = document.querySelector('#movie-list');
+
+  // if statement to check if movie array contains any element
+  
+  if(Movies.length === 0){
+    MovieList.classList.remove('visible')
+  } else{
+    MovieList.classList.add('visible');
+  }
+  MovieList.innerHTML = '';
+// then to append to the list we first add a li in the ul
+const MovieElement = document.createElement('li')
+// adding a foreach methos to add each movies title.
+Movies.forEach((movie) =>{
+  
+  MovieElement.textContent = movie.info.title;
+  MovieList.append(MovieElement);
+})
+
+}
 addMovieBtn.addEventListener('click', addMovieHandler)
