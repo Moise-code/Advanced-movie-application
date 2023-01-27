@@ -38,33 +38,7 @@ if(movieTitle === '' ||
   renderMovies();
 }
 
-// function to render the movies and displays it to the dom
-
-// const renderMovies = () =>{
-
-//   // lets target the ul to append li in the end
-
-//  const movieList = document.querySelector('#movie-list');
-//  if(Movies.length === 0){
-//    movieList.classList.remove('visible')
-//   } else{
-//     movieList.classList.add('visible');
-//   }
-//   movieList.innerHTML = '';
-//   // now lets out put the movies by using foreach
-
-//   Movies.forEach((movie) =>{
-//     // then we create new document in the movie list 
-//     const movieElement = document.createElement('li');
-//     // to take element to add
-//     movieElement.textContent = movie.info.title;
-//     movieList.append(movieElement)
-//   });
-
-// }
-
 // function to renders movies on the UI
-
 const renderMovies = () =>{
   // we are going first to target the ul holder of movies
   const MovieList = document.querySelector('#movie-list');
@@ -81,8 +55,15 @@ const renderMovies = () =>{
 const MovieElement = document.createElement('li')
 // adding a foreach methos to add each movies title.
 Movies.forEach((movie) =>{
-  
-  MovieElement.textContent = movie.info.title;
+  // now how can we get other keys in the info object
+  // let create the overall variable to hold the whole key
+  let Text = movie.info.title + ' - ';
+  // then lets check for any other key different from title.
+  for (const key in movie.info)
+  if( key !== 'title'){
+    Text = Text + `${key}: ${movie.info[key]}`;
+  }
+  MovieElement.textContent = Text;
   MovieList.append(MovieElement);
 })
 
